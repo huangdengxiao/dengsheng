@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="中文期刊论文智能写作 - 上海登盛健康管理咨询有限公司">
+  <title>中文期刊论文写作 - 上海登盛健康管理咨询有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/paper-cn.css">
+</head>
+<body class="paper-wizard-page">
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">登</div>
+        <div class="logo-text">
+          上海登盛健康管理咨询有限公司
+          <small>医学数据统计 · 科研写作</small>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="services.html">服务项目</a></li>
+        <li><a href="process.html">服务流程</a></li>
+        <li><a href="cases.html">成功案例</a></li>
+        <li><a href="contact.html" class="nav-cta">联系我们</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="paper-wizard-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">首页</a> / <a href="services.html#paper">服务项目</a> / 中文期刊论文</div>
+      <h1>中文期刊论文 · 智能写作向导</h1>
+      <p>按步骤完成标题设定、文献整理、提纲确认与范文生成，专业简洁，高效省心</p>
+
+      <nav class="wizard-progress" aria-label="写作步骤">
+        <div class="wizard-progress-item active" data-step="1">
+          <div class="dot">1</div>
+          <span class="label">标题</span>
+        </div>
+        <div class="wizard-progress-item" data-step="2">
+          <div class="dot">2</div>
+          <span class="label">文献</span>
+        </div>
+        <div class="wizard-progress-item" data-step="3">
+          <div class="dot">3</div>
+          <span class="label">提纲</span>
+        </div>
+        <div class="wizard-progress-item" data-step="4">
+          <div class="dot">4</div>
+          <span class="label">生成论文</span>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="wizard-layout">
+      <!-- 左侧流程说明 -->
+      <aside class="wizard-sidebar">
+        <h3>写作流程说明</h3>
+
+        <div class="sidebar-step active" data-sidebar="1">
+          <div class="step-label">步骤 1</div>
+          <h4>输入论文标题</h4>
+          <p>填写标题、选择论文类型，并完成内容配置（关键词、字数、参考资料等）。</p>
+          <p class="sidebar-title-preview" id="sidebarTitlePreview">（尚未输入）</p>
+        </div>
+
+        <div class="sidebar-step" data-sidebar="2">
+          <div class="step-label">步骤 2</div>
+          <h4>确定参考文献</h4>
+          <p>可「输入自定义参考文献（引文格式）」或选择「推荐文献（可追加英文）」补充至文中。</p>
+        </div>
+
+        <div class="sidebar-step" data-sidebar="3">
+          <div class="step-label">步骤 3</div>
+          <h4>选择心仪提纲</h4>
+          <p>预览系统生成的论文提纲，可使用「插入数据(表)、插入公式、插入图、插入代码」标记特殊内容位置。</p>
+        </div>
+
+        <div class="sidebar-step" data-sidebar="4">
+          <div class="step-label">步骤 4</div>
+          <h4>生成 AI 原创范文</h4>
+          <p>根据所选类型生成摘要与关键词示例；按每千字符 7 元计费，微信/支付宝扫码支付后可下载 Word、PDF。</p>
+        </div>
+      </aside>
+
+      <!-- 主内容区 -->
+      <div class="wizard-main">
+        <!-- 步骤1：标题与配置 -->
+        <div class="wizard-panel active" id="panel1">
+          <h2 class="panel-section-title">论文标题与类型
+            <small>请先完成标题输入与类型选择，再进行内容配置</small>
+          </h2>
+
+          <div class="form-field">
+            <label for="paperTitle">论文标题 <span class="required">*</span></label>
+            <input type="text" id="paperTitle" class="form-input" placeholder="请输入 5-50 字的论文标题" maxlength="60">
+            <div class="field-hint char-counter" id="titleCounter">0 / 50</div>
+            <div class="field-hint" id="titleHint">请输入 5-50 字的论文标题</div>
+          </div>
+
+          <div class="form-field">
+            <label>论文类型 <span class="required">*</span></label>
+            <div class="paper-type-grid">
+              <div class="paper-type-card" data-type="research">
+                <h4>研究论文</h4>
+                <p>指在报告和分享其对特定研究主题的详尽调查和发现</p>
+              </div>
+              <div class="paper-type-card" data-type="review">
+                <h4>综述论文</h4>
+                <p>将已发表的文献资料作为原始素材进行研究撰写</p>
+              </div>
+              <div class="paper-type-card" data-type="theoretical">
+                <h4>理论性论文</h4>
+                <p>根据已有的研究文献来建构理论的文章</p>
+              </div>
+              <div class="paper-type-card" data-type="applied">
+                <h4>应用性论文</h4>
+                <p>指在提出针对特定问题或需求的解决方案、策略或方法</p>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="panel-section-title" style="margin-top:32px;">自定义内容配置
+            <small>选择文中需要包含的元素，并设置关键词与字数</small>
+          </h2>
+
+          <div class="form-field">
+            <label>包含内容（可多选）</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-item">
+                <input type="checkbox" value="图表"> 图表
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="表格"> 表格
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="插图"> 插图
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="公式"> 公式
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="代码"> 代码
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="问卷调查"> 问卷调查
+              </label>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="keywords">关键词 <span class="required">*</span></label>
+            <input type="text" id="keywords" class="form-input" placeholder="每个关键词用空格或者；隔开，至少3个，至多8个，将在文章中显示">
+            <div class="field-hint" id="keywordsHint">至少 3 个，至多 8 个关键词</div>
+          </div>
+
+          <div class="form-field">
+            <label>目标字数 <span class="required">*</span></label>
+            <div class="word-count-options">
+              <button type="button" class="word-count-btn" data-count="3000">3000 字</button>
+              <button type="button" class="word-count-btn" data-count="8000">8000 字</button>
+              <button type="button" class="word-count-btn" data-count="10000">10000 字</button>
+              <button type="button" class="word-count-btn" data-count="20000">20000 字</button>
+            </div>
+            <div class="custom-word-row">
+              <span style="color:var(--text-muted);font-size:0.9rem;">自定义：</span>
+              <input type="number" id="customWordCount" class="form-input" placeholder="3000-20000" min="3000" max="20000" step="500">
+              <span style="color:var(--text-muted);font-size:0.85rem;">字（区间 3000-20000）</span>
+            </div>
+            <div class="field-hint" id="wordCountHint">已选择 8000 字</div>
+          </div>
+
+          <div class="form-field">
+            <label>参考资料上传</label>
+            <div class="upload-zone" id="uploadZone">
+              <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.csv,.png,.jpg">
+              <div class="upload-icon">📎</div>
+              <p>点击或拖拽文件至此处上传</p>
+              <p class="upload-tip">投喂 AI：补充参考资料</p>
+            </div>
+            <ul class="file-list" id="fileList"></ul>
+          </div>
+        </div>
+
+        <!-- 步骤2：文献 -->
+        <div class="wizard-panel" id="panel2">
+          <h2 class="panel-section-title">确定参考文献
+            <small>选择文献来源方式，确保引用规范完整</small>
+          </h2>
+
+          <div class="ref-option-btns">
+            <button type="button" class="ref-option-btn active" data-mode="custom">输入自定义参考文献（引文格式）</button>
+            <button type="button" class="ref-option-btn" data-mode="recommend">推荐文献（可追加英文）</button>
+          </div>
+
+          <div id="customRefPanel">
+            <div class="form-field">
+              <label for="customRefs">参考文献列表 <span class="required">*</span></label>
+              <textarea id="customRefs" class="form-input ref-textarea" placeholder="请按 GB/T 7714 格式输入参考文献，每行一条，例如：&#10;[1] 张三, 李四. 某疾病诊疗进展[J]. 中华医学杂志, 2024, 104(1): 12-18."></textarea>
+              <div class="field-hint">建议至少输入 3 条以上文献，每条单独一行</div>
+            </div>
+          </div>
+
+          <div id="recommendRefPanel" style="display:none;">
+            <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;">以下为系统根据您的标题推荐的文献，点击「追加」加入参考文献列表（含中英文）。</p>
+            <div class="recommended-list">
+              <div class="recommended-item">
+                <span class="ref-text">[1] Wang L, Zhang H. Advances in clinical epidemiology[J]. Lancet, 2023, 401(10388): 1456-1468.</span>
+                <button type="button" class="add-ref">追加</button>
+              </div>
+              <div class="recommended-item">
+                <span class="ref-text">[2] 王明, 李华. 临床医学研究方法学[M]. 北京: 人民卫生出版社, 2022: 56-78.</span>
+                <button type="button" class="add-ref">追加</button>
+              </div>
+              <div class="recommended-item">
+                <span class="ref-text">[3] Chen Y, Liu X. Statistical methods in medical research[J]. BMJ, 2024, 384: e078912.</span>
+                <button type="button" class="add-ref">追加</button>
+              </div>
+              <div class="recommended-item">
+                <span class="ref-text">[4] 中华医学会. 相关疾病诊疗指南(2023版)[J]. 中华内科杂志, 2023, 62(5): 401-420.</span>
+                <button type="button" class="add-ref">追加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 步骤3：提纲 -->
+        <div class="wizard-panel" id="panel3">
+          <h2 class="panel-section-title">选择心仪提纲
+            <small>预览提纲结构，可插入特殊内容标记</small>
+          </h2>
+
+          <div class="outline-toolbar">
+            <button type="button" class="outline-tool-btn" data-insert="数据(表)">插入数据(表)</button>
+            <button type="button" class="outline-tool-btn" data-insert="公式">插入公式</button>
+            <button type="button" class="outline-tool-btn" data-insert="图">插入图</button>
+            <button type="button" class="outline-tool-btn" data-insert="代码">插入代码</button>
+          </div>
+
+          <div class="outline-preview" id="outlinePreview">
+            <p>完成上一步后，点击「下一步」将自动生成提纲预览……</p>
+          </div>
+        </div>
+
+        <!-- 步骤4：生成 -->
+        <div class="wizard-panel" id="panel4">
+          <h2 class="panel-section-title">生成 AI 原创范文
+            <small>四种论文类型的摘要与关键词格式参考（已选类型将高亮显示）</small>
+          </h2>
+
+          <div class="generate-status" id="generateStatus" style="display:none;">
+            <div class="spinner"></div>
+            <p style="color:var(--text-muted);">正在根据您的配置生成论文范文，请稍候……</p>
+          </div>
+
+          <div class="type-samples-grid" id="typeSamples">
+            <div class="type-sample-card" data-type="research">
+              <h4>研究论文 · 示例</h4>
+              <div class="keywords"><strong>关键词：</strong></div>
+              <div class="abstract"></div>
+            </div>
+            <div class="type-sample-card" data-type="review">
+              <h4>综述论文 · 示例</h4>
+              <div class="keywords"><strong>关键词：</strong></div>
+              <div class="abstract"></div>
+            </div>
+            <div class="type-sample-card" data-type="theoretical">
+              <h4>理论性论文 · 示例</h4>
+              <div class="keywords"><strong>关键词：</strong></div>
+              <div class="abstract"></div>
+            </div>
+            <div class="type-sample-card" data-type="applied">
+              <h4>应用性论文 · 示例</h4>
+              <div class="keywords"><strong>关键词：</strong></div>
+              <div class="abstract"></div>
+            </div>
+          </div>
+
+          <!-- 收费与下载 -->
+          <div class="payment-download-section" id="paymentDownloadSection" style="display:none;">
+            <h2 class="panel-section-title" style="margin-top:32px;">支付与下载
+              <small>按文档实际字符数计费，每千字符 7 元（人民币），支付后可下载 Word / PDF</small>
+            </h2>
+
+            <div class="billing-card">
+              <div class="billing-row">
+                <span>论文标题</span>
+                <strong id="billingTitle">—</strong>
+              </div>
+              <div class="billing-row">
+                <span>文档字符数</span>
+                <strong id="billingCharCount">0</strong> 字
+              </div>
+              <div class="billing-row">
+                <span>计费标准</span>
+                <span>每 1000 字符 ¥7.00</span>
+              </div>
+              <div class="billing-row billing-total">
+                <span>应付金额</span>
+                <strong class="price" id="billingAmount">¥0.00</strong>
+              </div>
+            </div>
+
+            <div class="download-actions">
+              <button type="button" class="btn btn-outline btn-download" id="btnDownloadWord" disabled>
+                📄 下载 Word
+              </button>
+              <button type="button" class="btn btn-outline btn-download" id="btnDownloadPdf" disabled>
+                📑 下载 PDF
+              </button>
+              <button type="button" class="btn btn-primary" id="btnOpenPay">扫码支付</button>
+            </div>
+
+            <p class="pay-hint" id="payStatusHint">请先完成扫码支付，支付成功后方可下载文档</p>
+
+            <div class="session-ended" id="sessionEnded" style="display:none;">
+              <h4>本次服务已结束</h4>
+              <p>文档已下载完成。如需撰写新的论文，请开始新一轮写作流程。</p>
+              <button type="button" class="btn btn-primary" id="btnNewRound">开始新一轮</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 合规与历史（各步骤共用） -->
+        <div class="wizard-compliance">
+          <label class="agreement-check">
+            <input type="checkbox" id="agreementCheck">
+            <span>我已阅读并同意：本站提供的是文献下载服务，下载的内容仅用于参考，不作为毕业、发表使用</span>
+          </label>
+
+          <div class="tips-box">
+            <h4>温馨提示</h4>
+            <ul>
+              <li>采用 SSL 传输加密，绝不泄漏论文的任何信息。</li>
+              <li>支付之前，请确认能接受机器生成带来的误差和局限性，再支付费用，确认支付后不接受任何形式退款。</li>
+              <li>所有论文及文档都应该由本人通过学习后认真撰写，AI 范文相关内容仅视为格式参考。</li>
+            </ul>
+          </div>
+
+          <div class="history-section">
+            <h4>历史生成记录</h4>
+            <div class="history-list" id="historyList"></div>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn btn-outline" id="btnPrev">上一步</button>
+          <button type="button" class="btn btn-primary" id="btnNext">下一步</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" style="margin-top:0;">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0;">
+        <span>© 2026 上海登盛健康管理咨询有限公司 版权所有</span>
+        <span><a href="services.html">返回服务项目</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-msg" id="toastMsg" role="alert"></div>
+
+  <!-- 支付弹窗 -->
+  <div class="pay-modal-overlay" id="payModalOverlay" aria-hidden="true">
+    <div class="pay-modal" role="dialog" aria-labelledby="payModalTitle">
+      <button type="button" class="pay-modal-close" id="payModalClose" aria-label="关闭">×</button>
+      <h3 id="payModalTitle">扫码支付</h3>
+      <p class="pay-modal-amount">应付金额：<strong id="payModalAmount">¥0.00</strong></p>
+      <p class="pay-modal-desc">文档共 <span id="payModalChars">0</span> 字符，按每千字符 7 元计费</p>
+
+      <div class="pay-qr-grid">
+        <div class="pay-qr-item">
+          <img src="assets/qrcode-wechat.svg" alt="微信收款码" width="180" height="180">
+          <span class="pay-qr-label wechat">微信支付</span>
+          <p class="pay-qr-tip">请使用微信扫一扫，替换为个人收款码</p>
+        </div>
+        <div class="pay-qr-item">
+          <img src="assets/qrcode-alipay.svg" alt="支付宝收款码" width="180" height="180">
+          <span class="pay-qr-label alipay">支付宝</span>
+          <p class="pay-qr-tip">请使用支付宝扫一扫，替换为个人收款码</p>
+        </div>
+      </div>
+
+      <p class="pay-modal-notice">确认支付后不接受任何形式退款。支付完成后请点击下方按钮。</p>
+      <button type="button" class="btn btn-primary pay-confirm-btn" id="btnConfirmPaid">我已完成支付</button>
+    </div>
+  </div>
+
+  <!-- 隐藏：用于 PDF 渲染的文档内容 -->
+  <div id="paperDocRender" class="paper-doc-render" aria-hidden="true"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/paper-cn.js"></script>
+</body>
+</html>

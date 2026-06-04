@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="联系上海登盛健康管理咨询有限公司 - 医学数据统计分析咨询">
+  <title>联系我们 - 上海登盛健康管理咨询有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">登</div>
+        <div class="logo-text">
+          上海登盛健康管理咨询有限公司
+          <small>医学数据统计 · 科研写作</small>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="services.html">服务项目</a></li>
+        <li><a href="process.html">服务流程</a></li>
+        <li><a href="cases.html">成功案例</a></li>
+        <li><a href="contact.html" class="nav-cta active">联系我们</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">首页</a> / 联系我们</div>
+      <h1>联系我们</h1>
+      <p class="lead">留下您的需求，专业顾问将在 1 个工作日内与您联系</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-info fade-in">
+        <h2 style="color:#fff;margin-bottom:24px;font-size:1.5rem;">联系方式</h2>
+
+        <div class="info-item">
+          <div class="icon">📞</div>
+          <div>
+            <h4>咨询热线</h4>
+            <p><a href="tel:021-00000000">021-XXXX-XXXX</a></p>
+            <p>工作日 9:00 - 18:00</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon">✉️</div>
+          <div>
+            <h4>电子邮箱</h4>
+            <p><a href="mailto:contact@dengsheng.com">contact@dengsheng.com</a></p>
+            <p>商务合作：business@dengsheng.com</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon">📍</div>
+          <div>
+            <h4>公司地址</h4>
+            <p>上海市（请填写具体地址）</p>
+            <p>欢迎预约到访，请提前电话联系</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon">💬</div>
+          <div>
+            <h4>微信咨询</h4>
+            <p>添加客服微信：dengsheng-med</p>
+            <p>备注：姓名 + 单位 + 咨询内容</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:32px;">
+          <h4 style="color:#fff;margin-bottom:8px;">服务承诺</h4>
+          <p style="color:var(--text-muted);font-size:0.9rem;">✓ 24 小时内响应咨询 &nbsp; ✓ 免费初步可行性评估 &nbsp; ✓ 签署保密协议后开展合作</p>
+        </div>
+      </div>
+
+      <div class="card contact-form fade-in">
+        <h2 style="color:#fff;margin-bottom:24px;font-size:1.35rem;">在线咨询</h2>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">姓名 *</label>
+              <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+            </div>
+            <div class="form-group">
+              <label for="phone">联系电话 *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="请输入手机号">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="org">单位/机构</label>
+            <input type="text" id="org" name="org" placeholder="如：XX 医院 / XX 大学">
+          </div>
+          <div class="form-group">
+            <label for="service">咨询类型 *</label>
+            <select id="service" name="service" required>
+              <option value="">请选择服务类型</option>
+              <option value="analysis">医学数据统计分析</option>
+              <option value="paper">医学论文撰写</option>
+              <option value="bid">科研标书撰写</option>
+              <option value="review">综述撰写</option>
+              <option value="other">其他 / 综合咨询</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">需求描述 *</label>
+            <textarea id="message" name="message" required placeholder="请简要描述您的研究类型、样本量、期望完成时间等信息，便于我们为您匹配专家"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">提交咨询</button>
+          <div id="formMessage" class="form-message"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">FAQ</span>
+        <h2>常见问题</h2>
+      </div>
+      <div class="services-grid fade-in">
+        <div class="card">
+          <h3>项目周期一般多长？</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-top:8px;">常规统计分析 1-3 周，论文撰写 2-6 周，标书撰写 1-2 周，具体视数据复杂度与篇幅而定。</p>
+        </div>
+        <div class="card">
+          <h3>如何保障数据安全？</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-top:8px;">签署保密协议，数据脱敏传输，分析完成后按约定删除，详见服务流程页数据安全说明。</p>
+        </div>
+        <div class="card">
+          <h3>费用如何计算？</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-top:8px;">根据研究类型、样本量、分析难度及交付内容综合报价，咨询评估后提供详细方案与报价单。</p>
+        </div>
+        <div class="card">
+          <h3>是否提供售后支持？</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-top:8px;">论文修回期内免费补充分析与文稿修改（合同约定范围内），长期客户享优先排期与折扣。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">登</div>
+            <div class="logo-text">上海登盛健康管理咨询有限公司</div>
+          </a>
+          <p>专注医学数据统计分析与科研写作，为医学研究与临床实践提供专业、可靠的数据科学支持。</p>
+        </div>
+        <div class="footer-col">
+          <h4>快速链接</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="services.html">服务项目</a></li>
+            <li><a href="process.html">服务流程</a></li>
+            <li><a href="cases.html">成功案例</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>服务项目</h4>
+          <ul>
+            <li><a href="services.html#analysis">数据统计分析</a></li>
+            <li><a href="services.html#paper">论文撰写</a></li>
+            <li><a href="services.html#bid">标书撰写</a></li>
+            <li><a href="services.html#review">综述撰写</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>联系我们</h4>
+          <ul>
+            <li><a href="tel:021-00000000">电话：021-XXXX-XXXX</a></li>
+            <li><a href="mailto:contact@dengsheng.com">邮箱：contact@dengsheng.com</a></li>
+            <li>地址：上海市</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 上海登盛健康管理咨询有限公司 版权所有</span>
+        <span>沪ICP备XXXXXXXX号</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
