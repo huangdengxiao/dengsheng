@@ -21,7 +21,7 @@
       text-decoration: underline;
     }
 
-    /* 弹窗样式 */
+    /* 弹窗 */
     .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 9999; }
     .modal.show { display: flex; }
     .modal-box { background: #fff; padding: 30px; border-radius: 12px; max-width: 420px; width: 90%; text-align: center; }
@@ -29,7 +29,7 @@
     .modal-box input, .modal-box select { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 6px; }
     .modal-box button { background: #0066cc; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 6px; }
 
-    /* 付费套餐卡片 */
+    /* 付费卡片 */
     .price-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
     .price-card { border: 1px solid #ddd; padding: 20px; border-radius: 10px; width: 160px; text-align: center; }
     .price-card h4 { margin: 0 0 10px; }
@@ -37,6 +37,53 @@
     .price-card button { width: 100%; }
 
     .qr-img { width: 160px; height: 160px; margin: 10px auto; display: block; }
+
+    /* 头像样式 */
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0066cc;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    /* 顶部用户下拉菜单 */
+    .nav-user {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .nav-user:hover .user-dropdown {
+      display: block;
+    }
+    .user-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 160px;
+      z-index: 999;
+    }
+    .user-dropdown a {
+      display: block;
+      padding: 10px 14px;
+      color: #333;
+      text-decoration: none;
+    }
+    .user-dropdown a:hover {
+      background: #f5f5f5;
+    }
   </style>
 </head>
 <body>
@@ -64,7 +111,7 @@
   </div>
 </div>
 
-<!-- 个人信息完善弹窗 -->
+<!-- 个人信息完善 -->
 <div class="modal" id="profileModal">
   <div class="modal-box">
     <h3>完善个人信息</h3>
@@ -81,7 +128,7 @@
   </div>
 </div>
 
-<!-- 付费套餐弹窗 -->
+<!-- 付费套餐 -->
 <div class="modal" id="payModal">
   <div class="modal-box">
     <h3>开通会员</h3>
@@ -111,7 +158,7 @@
   </div>
 </div>
 
-<!-- 扫码支付弹窗 -->
+<!-- 扫码支付 -->
 <div class="modal" id="qrModal">
   <div class="modal-box">
     <h3>扫码支付</h3>
@@ -136,7 +183,8 @@
     <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <!-- 调整后的导航栏：登录入口放在联系我们之后 -->
+
+    <!-- 顶级导航：首页同级 → 登录/头像 放在最后 -->
     <ul class="nav-menu">
       <li><a href="index.html">首页</a></li>
       <li><a href="about.html">关于我们</a></li>
@@ -144,14 +192,26 @@
       <li><a href="process.html">服务流程</a></li>
       <li><a href="cases.html">成功案例</a></li>
       <li><a href="contact.html">联系我们</a></li>
-      <li><a href="javascript:showLogin()" id="loginText">登录</a></li>
-      <li><a href="javascript:showProfile()" id="profileText" style="display:none;">个人中心</a></li>
-      <li><a href="javascript:logout()" id="logoutText" style="display:none;">退出</a></li>
+
+      <!-- 登录 / 头像 顶级菜单 -->
+      <li id="loginItem" style="white-space: nowrap;">
+        <a href="javascript:showLogin()">登录</a>
+      </li>
+
+      <li id="userItem" style="display:none; white-space: nowrap;">
+        <div class="nav-user">
+          <div class="user-avatar" onclick="showProfile()">U</div>
+          <span id="userName">用户</span>
+          <div class="user-dropdown">
+            <a href="javascript:showProfile()">个人中心</a>
+            <a href="javascript:logout()">退出登录</a>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 </header>
 
-<!-- 以下为原页面内容，保持不变 -->
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumb"><a href="index.html">首页</a> / 服务项目</div>
@@ -292,21 +352,15 @@
 
 <script src="js/main.js"></script>
 <script>
-// 初始化 UI
 refreshUI();
 
-// 关闭所有弹窗
 function closeModal() {
   document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
 }
-
-// 显示登录
 function showLogin() {
   closeModal();
   document.getElementById('loginModal').classList.add('show');
 }
-
-// 去注册
 function goToRegister() {
   closeModal();
   document.getElementById('regModal').classList.add('show');
@@ -320,10 +374,10 @@ function userRegister() {
   localStorage.setItem('user_phone', phone);
   localStorage.setItem('user_pwd', pwd);
   localStorage.setItem('isLogin', '1');
-  alert('注册成功，请完善个人信息');
+  alert('注册成功');
   closeModal();
-  showProfile();
   refreshUI();
+  showProfile();
 }
 
 // 登录
@@ -342,65 +396,59 @@ function userLogin() {
   }
 }
 
-// 退出登录
+// 退出
 function logout() {
   localStorage.removeItem('isLogin');
-  alert('已退出登录');
+  alert('已退出');
   refreshUI();
 }
 
-// 刷新界面显示
+// 刷新界面
 function refreshUI() {
   const logined = localStorage.getItem('isLogin') === '1';
-  document.getElementById('loginText').style.display = logined ? 'none' : 'inline';
-  document.getElementById('profileText').style.display = logined ? 'inline' : 'none';
-  document.getElementById('logoutText').style.display = logined ? 'inline' : 'none';
+  document.getElementById('loginItem').style.display = logined ? 'none' : 'inline-block';
+  document.getElementById('userItem').style.display = logined ? 'inline-block' : 'none';
+
+  const name = localStorage.getItem('realname') || '用户';
+  document.getElementById('userName').innerText = name;
 }
 
-// 显示个人中心
+// 个人中心
 function showProfile() {
   if (localStorage.getItem('isLogin') !== '1') { showLogin(); return; }
   closeModal();
   document.getElementById('profileModal').classList.add('show');
-  const name = localStorage.getItem('realname') || '';
-  const gender = localStorage.getItem('gender') || '';
-  const phone = localStorage.getItem('userinfo_phone') || '';
-  const company = localStorage.getItem('company') || '';
-  document.getElementById('realname').value = name;
-  document.getElementById('gender').value = gender;
-  document.getElementById('phone').value = phone;
-  document.getElementById('company').value = company;
+
+  document.getElementById('realname').value = localStorage.getItem('realname') || '';
+  document.getElementById('gender').value = localStorage.getItem('gender') || '';
+  document.getElementById('phone').value = localStorage.getItem('userinfo_phone') || '';
+  document.getElementById('company').value = localStorage.getItem('company') || '';
 }
 
-// 保存个人信息
+// 保存资料
 function saveProfile() {
-  const realname = document.getElementById('realname').value;
-  const gender = document.getElementById('gender').value;
-  const phone = document.getElementById('phone').value;
-  const company = document.getElementById('company').value;
-  localStorage.setItem('realname', realname);
-  localStorage.setItem('gender', gender);
-  localStorage.setItem('userinfo_phone', phone);
-  localStorage.setItem('company', company);
+  localStorage.setItem('realname', document.getElementById('realname').value);
+  localStorage.setItem('gender', document.getElementById('gender').value);
+  localStorage.setItem('userinfo_phone', document.getElementById('phone').value);
+  localStorage.setItem('company', document.getElementById('company').value);
   alert('保存成功');
   closeModal();
+  refreshUI();
 }
 
-// 选择套餐
+// 支付相关
 function selectPlan(plan) {
   closeModal();
-  document.getElementById('planText').innerText = '套餐：' + plan;
+  document.getElementById('planText').textContent = '套餐：' + plan;
   document.getElementById('qrModal').classList.add('show');
 }
-
-// 标记已支付
 function payDone() {
   localStorage.setItem('isVip', '1');
-  alert('已开通会员，可正常使用所有服务');
+  alert('已开通会员，可使用全部功能');
   closeModal();
 }
 
-// 使用服务前校验
+// 使用服务校验
 function checkUse() {
   if (localStorage.getItem('isLogin') !== '1') {
     alert('请先登录');
@@ -409,7 +457,6 @@ function checkUse() {
   }
   if (localStorage.getItem('isVip') !== '1') {
     alert('请开通会员后使用');
-    closeModal();
     document.getElementById('payModal').classList.add('show');
     return;
   }
