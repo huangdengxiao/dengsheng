@@ -36,6 +36,18 @@
     .price-card .price { font-size: 20px; font-weight: bold; color: #0066cc; margin-bottom: 10px; }
     .price-card button { width: 100%; }
 
+    /* 免费试用卡片高亮 */
+    .price-card.free {
+      border: 1px solid #02c076;
+      background: #f8fffc;
+    }
+    .price-card.free .price {
+      color: #02c076;
+    }
+    .price-card.free button {
+      background: #02c076;
+    }
+
     .qr-img { width: 160px; height: 160px; margin: 10px auto; display: block; }
 
     /* 头像样式 */
@@ -95,7 +107,7 @@
     <input type="text" id="login_phone" placeholder="手机号">
     <input type="password" id="login_pwd" placeholder="密码">
     <button onclick="userLogin()">登录</button>
-    <button onclick="goToRegister()">去注册</button>
+    <button onclick="goToRegister()">注册</button>
     <button onclick="closeModal()">关闭</button>
   </div>
 </div>
@@ -128,11 +140,19 @@
   </div>
 </div>
 
-<!-- 付费套餐 -->
+<!-- 付费套餐 + 免费试用 -->
 <div class="modal" id="payModal">
   <div class="modal-box">
     <h3>开通会员</h3>
     <div class="price-cards">
+      <!-- 新增：免费试用1天 -->
+      <div class="price-card free">
+        <h4>免费试用</h4>
+        <div class="price">0元</div>
+        <div style="font-size:12px;color:#666;margin-bottom:10px;">体验时长：24小时</div>
+        <button onclick="activeFreeTrial()">立即领取</button>
+      </div>
+
       <div class="price-card">
         <h4>月会员</h4>
         <div class="price">50元</div>
@@ -184,7 +204,6 @@
       <span></span><span></span><span></span>
     </button>
 
-    <!-- 顶级导航：首页同级 → 登录/头像 放在最后 -->
     <ul class="nav-menu">
       <li><a href="index.html">首页</a></li>
       <li><a href="about.html">关于我们</a></li>
@@ -192,8 +211,7 @@
       <li><a href="process.html">服务流程</a></li>
       <li><a href="cases.html">成功案例</a></li>
       <li><a href="contact.html">联系我们</a></li>
-
-      <!-- 登录 / 头像 顶级菜单 -->
+      <li><a href="contact.html">登录</a></li>
       <li id="loginItem" style="white-space: nowrap;">
         <a href="javascript:showLogin()">登录</a>
       </li>
@@ -444,23 +462,45 @@ function selectPlan(plan) {
 }
 function payDone() {
   localStorage.setItem('isVip', '1');
+  localStorage.removeItem('trialExpire');
   alert('已开通会员，可使用全部功能');
   closeModal();
 }
 
-// 使用服务校验
+// 新增：免费试用1天
+function activeFreeTrial() {
+  if (localStorage.getItem('isLogin') !== '1') {
+    alert('请先登录再领取免费试用');
+    showLogin();
+    return;
+  }
+  // 记录过期时间：24小时后
+  const expireTime = Date.now() + 24 * 60 * 60 * 1000;
+  localStorage.setItem('trialExpire', expireTime);
+  localStorage.removeItem('isVip');
+  alert('成功领取免费试用！24小时内可使用全部服务');
+  closeModal();
+}
+
+// 使用服务校验（已兼容试用）
 function checkUse() {
   if (localStorage.getItem('isLogin') !== '1') {
     alert('请先登录');
     showLogin();
     return;
   }
-  if (localStorage.getItem('isVip') !== '1') {
-    alert('请开通会员后使用');
+
+  // 判断是否会员 或 试用未过期
+  const isVip = localStorage.getItem('isVip') === '1';
+  const trialExpire = localStorage.getItem('trialExpire');
+  const trialValid = trialExpire && (Date.now() < trialExpire);
+
+  if (isVip || trialValid) {
+    window.open('https://code.coze.cn/web-sdk/7655125766451019802', '_blank');
+  } else {
+    alert('请开通会员或领取免费试用后使用');
     document.getElementById('payModal').classList.add('show');
-    return;
   }
-  window.open('https://code.coze.cn/web-sdk/7655125766451019802', '_blank');
 }
 </script>
 </body>
