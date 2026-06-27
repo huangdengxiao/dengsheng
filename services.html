@@ -21,35 +21,23 @@
       text-decoration: underline;
     }
 
-    /* 弹窗遮罩 */
-    .modal {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none; align-items: center; justify-content: center;
-      z-index: 9999;
-    }
+    /* 弹窗 */
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 9999; }
     .modal.show { display: flex; }
-    .modal-box {
-      background: #fff; padding: 30px; border-radius: 12px;
-      max-width: 400px; width: 90%; text-align: center;
-    }
+    .modal-box { background: #fff; padding: 30px; border-radius: 12px; max-width: 420px; width: 90%; text-align: center; }
     .modal-box h3 { margin-top: 0; margin-bottom: 20px; }
-    .modal-box input {
-      width: 100%; padding: 10px; margin-bottom: 12px;
-      border: 1px solid #ddd; border-radius: 6px;
-    }
-    .modal-box button {
-      background: #0066cc; color: #fff; border: none;
-      padding: 10px 20px; border-radius: 6px; cursor: pointer;
-      margin: 6px;
-    }
-    .qr-img {
-      width: 180px; height: 180px; margin: 10px;
-    }
-    .qr-row {
-      display: flex; justify-content: center; gap: 20px;
-      flex-wrap: wrap;
-    }
+    .modal-box input, .modal-box select { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 6px; }
+    .modal-box button { background: #0066cc; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin: 6px; }
+
+    /* 付费套餐卡片 */
+    .price-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+    .price-card { border: 1px solid #ddd; padding: 20px; border-radius: 10px; width: 160px; text-align: center; }
+    .price-card h4 { margin: 0 0 10px; }
+    .price-card .price { font-size: 20px; font-weight: bold; color: #0066cc; margin-bottom: 10px; }
+    .price-card button { width: 100%; }
+
+    .qr-img { width: 160px; height: 160px; margin: 10px auto; display: block; }
+    .user-info-item { text-align: left; margin: 8px 0; }
   </style>
 </head>
 <body>
@@ -57,32 +45,83 @@
 <!-- 登录弹窗 -->
 <div class="modal" id="loginModal">
   <div class="modal-box">
-    <h3>登录 / 注册</h3>
-    <input type="text" id="username" placeholder="请输入用户名">
-    <input type="password" id="password" placeholder="请输入密码">
+    <h3>登录</h3>
+    <input type="text" id="login_phone" placeholder="手机号">
+    <input type="password" id="login_pwd" placeholder="密码">
     <button onclick="userLogin()">登录</button>
+    <button onclick="goToRegister()">去注册</button>
+    <button onclick="closeModal()">关闭</button>
+  </div>
+</div>
+
+<!-- 注册弹窗 -->
+<div class="modal" id="regModal">
+  <div class="modal-box">
+    <h3>注册</h3>
+    <input type="text" id="reg_phone" placeholder="手机号">
+    <input type="password" id="reg_pwd" placeholder="设置密码">
     <button onclick="userRegister()">注册</button>
     <button onclick="closeModal()">关闭</button>
   </div>
 </div>
 
-<!-- 付费弹窗 -->
+<!-- 个人信息完善 -->
+<div class="modal" id="profileModal">
+  <div class="modal-box">
+    <h3>完善个人信息</h3>
+    <input type="text" id="realname" placeholder="姓名/用户名">
+    <select id="gender">
+      <option value="">性别</option>
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    <input type="text" id="phone" placeholder="手机号">
+    <input type="text" id="company" placeholder="单位/医院/学校">
+    <button onclick="saveProfile()">保存信息</button>
+    <button onclick="closeModal()">关闭</button>
+  </div>
+</div>
+
+<!-- 付费套餐弹窗 -->
 <div class="modal" id="payModal">
   <div class="modal-box">
-    <h3>付费解锁服务</h3>
-    <p>扫码支付后联系客服开通权限</p>
-    <div class="qr-row">
-      <div>
-        <img class="qr-img" src="images/wxpay.jpg" alt="微信收款">
-        <p>微信支付</p>
+    <h3>开通会员</h3>
+    <div class="price-cards">
+      <div class="price-card">
+        <h4>月会员</h4>
+        <div class="price">50元</div>
+        <button onclick="selectPlan('月会员50元')">立即开通</button>
       </div>
-      <div>
-        <img class="qr-img" src="images/alipay.jpg" alt="支付宝收款">
-        <p>支付宝</p>
+      <div class="price-card">
+        <h4>季会员</h4>
+        <div class="price">140元</div>
+        <button onclick="selectPlan('季会员140元')">立即开通</button>
+      </div>
+      <div class="price-card">
+        <h4>半年会员</h4>
+        <div class="price">260元</div>
+        <button onclick="selectPlan('半年会员260元')">立即开通</button>
+      </div>
+      <div class="price-card">
+        <h4>年会员</h4>
+        <div class="price">550元</div>
+        <button onclick="selectPlan('年会员550元')">立即开通</button>
       </div>
     </div>
-    <p style="margin-top:16px;">客服微信：your-wechat-id</p>
-    <button onclick="closeModal()">我已支付，联系客服</button>
+    <button onclick="closeModal()" style="background:#666">取消</button>
+  </div>
+</div>
+
+<!-- 扫码支付弹窗 -->
+<div class="modal" id="qrModal">
+  <div class="modal-box">
+    <h3>扫码支付</h3>
+    <p id="planText">套餐：月会员50元</p>
+    <img class="qr-img" src="images/wxpay.jpg" alt="微信收款码">
+    <img class="qr-img" src="images/alipay.jpg" alt="支付宝收款码">
+    <p style="margin-top:10px;">客服微信：your-wechat</p>
+    <button onclick="payDone()">我已完成支付</button>
+    <button onclick="closeModal()">返回</button>
   </div>
 </div>
 
@@ -104,8 +143,10 @@
       <li><a href="services.html" class="active">服务项目</a></li>
       <li><a href="process.html">服务流程</a></li>
       <li><a href="cases.html">成功案例</a></li>
-      <li><a href="contact.html" class="nav-cta">联系我们</a></li>
-      <li><a href="javascript:checkAuth()">我的账户</a></li>
+      <li><a href="contact.html">联系我们</a></li>
+      <li><a href="javascript:showLogin()" id="loginText">登录</a></li>
+      <li><a href="javascript:showProfile()" id="profileText" style="display:none;">个人中心</a></li>
+      <li><a href="javascript:logout()" id="logoutText" style="display:none;">退出</a></li>
     </ul>
   </div>
 </header>
@@ -153,11 +194,11 @@
         <h2>📝 医学论文撰写</h2>
         <p style="color:var(--text-muted);margin-bottom:16px;">从选题立项到投稿修回，提供中英文医学论文全流程写作支持，覆盖各类研究设计与期刊层级。</p>
         <p style="margin-bottom:16px;">
-          <a href="javascript:checkAuthAndGo()" class="btn btn-primary">进入中文期刊论文写作向导</a>
+          <a href="javascript:checkUse()" class="btn btn-primary">进入中文期刊论文写作向导</a>
         </p>
         <ul class="feature-list">
           <li>SCI 论文（Q1-Q4 分区）</li>
-          <li><a href="javascript:checkAuthAndGo()">论文写作智能体</a></li>
+          <li><a href="javascript:checkUse()">论文写作智能体</a></li>
           <li>回顾性/前瞻性临床研究</li>
           <li>病例报告与病例系列</li>
           <li>基础研究转化论文</li>
@@ -250,75 +291,128 @@
 
 <script src="js/main.js"></script>
 <script>
-// 权限校验核心逻辑
-function isLogin() {
-  return localStorage.getItem('user') === 'ok';
-}
-function isPaid() {
-  return localStorage.getItem('paid') === 'ok';
-}
+// 初始化 UI
+refreshUI();
 
-// 关闭弹窗
+// 关闭所有弹窗
 function closeModal() {
   document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
 }
 
-// 登录
-function userLogin() {
-  let user = document.getElementById('username').value;
-  let pwd = document.getElementById('password').value;
-  if(user && pwd) {
-    localStorage.setItem('user', 'ok');
-    closeModal();
-    alert('登录成功！请付费解锁全部功能');
-    showPay();
-  }
+// 显示登录
+function showLogin() {
+  closeModal();
+  document.getElementById('loginModal').classList.add('show');
+}
+
+// 去注册
+function goToRegister() {
+  closeModal();
+  document.getElementById('regModal').classList.add('show');
 }
 
 // 注册
 function userRegister() {
-  let user = document.getElementById('username').value;
-  let pwd = document.getElementById('password').value;
-  if(user && pwd) {
-    localStorage.setItem('user', 'ok');
+  const phone = document.getElementById('reg_phone').value;
+  const pwd = document.getElementById('reg_pwd').value;
+  if (!phone || !pwd) { alert('请填写完整信息'); return; }
+  localStorage.setItem('user_phone', phone);
+  localStorage.setItem('user_pwd', pwd);
+  localStorage.setItem('isLogin', '1');
+  alert('注册成功，请完善个人信息');
+  closeModal();
+  showProfile();
+  refreshUI();
+}
+
+// 登录
+function userLogin() {
+  const phone = document.getElementById('login_phone').value;
+  const pwd = document.getElementById('login_pwd').value;
+  const up = localStorage.getItem('user_phone');
+  const pp = localStorage.getItem('user_pwd');
+  if (phone === up && pwd === pp) {
+    localStorage.setItem('isLogin', '1');
+    alert('登录成功');
     closeModal();
-    alert('注册并自动登录成功！');
-    showPay();
-  }
-}
-
-// 显示付费
-function showPay() {
-  document.getElementById('payModal').classList.add('show');
-}
-
-// 检查登录并跳转
-function checkAuthAndGo() {
-  if(!isLogin()) {
-    document.getElementById('loginModal').classList.add('show');
-    return;
-  }
-  if(!isPaid()) {
-    showPay();
-    return;
-  }
-  // 已付费，跳转到智能体
-  window.open('https://code.coze.cn/web-sdk/7655125766451019802','_blank');
-}
-
-// 仅检查登录状态
-function checkAuth() {
-  if(isLogin()) {
-    alert('已登录\n付费状态：' + (isPaid()?'已解锁':'未解锁'));
+    refreshUI();
   } else {
-    document.getElementById('loginModal').classList.add('show');
+    alert('手机号或密码错误');
   }
 }
 
-// 你收到钱后，让用户按这个按钮解锁（也可你自己后台开）
-function adminUnlock() {
-  localStorage.setItem('paid','ok');
-  alert('已成功解锁全部功能！');
+// 退出登录
+function logout() {
+  localStorage.removeItem('isLogin');
+  alert('已退出登录');
+  refreshUI();
+}
+
+// 刷新界面显示
+function refreshUI() {
+  const logined = localStorage.getItem('isLogin') === '1';
+  document.getElementById('loginText').style.display = logined ? 'none' : 'inline';
+  document.getElementById('profileText').style.display = logined ? 'inline' : 'none';
+  document.getElementById('logoutText').style.display = logined ? 'inline' : 'none';
+}
+
+// 显示个人中心
+function showProfile() {
+  if (localStorage.getItem('isLogin') !== '1') { showLogin(); return; }
+  closeModal();
+  document.getElementById('profileModal').classList.add('show');
+  const name = localStorage.getItem('realname') || '';
+  const gender = localStorage.getItem('gender') || '';
+  const phone = localStorage.getItem('userinfo_phone') || '';
+  const company = localStorage.getItem('company') || '';
+  document.getElementById('realname').value = name;
+  document.getElementById('gender').value = gender;
+  document.getElementById('phone').value = phone;
+  document.getElementById('company').value = company;
+}
+
+// 保存个人信息
+function saveProfile() {
+  const realname = document.getElementById('realname').value;
+  const gender = document.getElementById('gender').value;
+  const phone = document.getElementById('phone').value;
+  const company = document.getElementById('company').value;
+  localStorage.setItem('realname', realname);
+  localStorage.setItem('gender', gender);
+  localStorage.setItem('userinfo_phone', phone);
+  localStorage.setItem('company', company);
+  alert('保存成功');
+  closeModal();
+}
+
+// 选择套餐
+function selectPlan(plan) {
+  closeModal();
+  document.getElementById('planText').innerText = '套餐：' + plan;
+  document.getElementById('qrModal').classList.add('show');
+}
+
+// 标记已支付
+function payDone() {
+  localStorage.setItem('isVip', '1');
+  alert('已开通会员，可正常使用所有服务');
+  closeModal();
+}
+
+// 使用服务前校验
+function checkUse() {
+  if (localStorage.getItem('isLogin') !== '1') {
+    alert('请先登录');
+    showLogin();
+    return;
+  }
+  if (localStorage.getItem('isVip') !== '1') {
+    alert('请开通会员后使用');
+    closeModal();
+    document.getElementById('payModal').classList.add('show');
+    return;
+  }
+  window.open('https://code.coze.cn/web-sdk/7655125766451019802', '_blank');
 }
 </script>
 </body>
