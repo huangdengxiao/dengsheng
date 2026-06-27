@@ -9,6 +9,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 让列表里的链接样式和文字完全一致，点击全屏打开 */
+    .feature-list li a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .feature-list li a:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -71,25 +85,28 @@
           <div class="tools-tags">
             <span>SPSS</span><span>SAS</span><span>R</span><span>Stata</span><span>RevMan</span><span>GraphPad</span>
           </div>
-<article id="paper" class="service-block fade-in">
-  <h2>📝 医学论文撰写</h2>
-  <p style="color:var(--text-muted);margin-bottom:16px;">从选题立项到投稿修回，提供中英文医学论文全流程写作支持，覆盖各类研究设计与期刊层级。</p>
-  <p style="margin-bottom:16px;">
-    <a href="paper-cn.html" class="btn btn-primary" style="font-size:0.9rem;padding:10px 20px;">进入中文期刊论文写作向导</a>
-  </p>
-  <ul class="feature-list">
-    <li>SCI 论文（Q1‑Q4 分区）</li>
-    <li>中文期刊论文</li>
-    <li>回顾性/前瞻性临床研究</li>
-    <li>病例报告与病例系列</li>
-    <li>基础研究转化论文</li>
-    <li>Introduction / Methods / Results / Discussion</li>
-    <li>Cover Letter 与 Response Letter</li>
-    <li>期刊选择与投稿策略建议</li>
-    <li>查重降重与语言润色</li>
-    <li>伦理与注册信息协助</li>
-  </ul>
-</article>
+        </article>
+
+        <article id="paper" class="service-block fade-in">
+          <h2>📝 医学论文撰写</h2>
+          <p style="color:var(--text-muted);margin-bottom:16px;">从选题立项到投稿修回，提供中英文医学论文全流程写作支持，覆盖各类研究设计与期刊层级。</p>
+          <p style="margin-bottom:16px;">
+            <a href="paper-cn.html" class="btn btn-primary" style="font-size:0.9rem;padding:10px 20px;">进入中文期刊论文写作向导</a>
+          </p>
+          <ul class="feature-list">
+            <li>SCI 论文（Q1-Q4 分区）</li>
+            <li><a href="https://code.coze.cn/web-sdk/7655125766451019802" target="_blank">论文写作智能体</a></li>
+            <li>回顾性/前瞻性临床研究</li>
+            <li>病例报告与病例系列</li>
+            <li>基础研究转化论文</li>
+            <li>Introduction / Methods / Results / Discussion</li>
+            <li>Cover Letter 与 Response Letter</li>
+            <li>期刊选择与投稿策略建议</li>
+            <li>查重降重与语言润色</li>
+            <li>伦理与注册信息协助</li>
+          </ul>
+        </article>
+
         <article id="bid" class="service-block fade-in">
           <h2>📋 科研标书撰写</h2>
           <p style="color:var(--text-muted);margin-bottom:16px;">协助各级科研项目申报，突出创新性与可行性，提高立项成功率。</p>
