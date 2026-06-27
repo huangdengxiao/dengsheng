@@ -80,17 +80,37 @@
           </p>
           <ul class="feature-list">
             <li>SCI 论文（Q1-Q4 分区）</li>
-            <li>中文期刊论文</li>
-<!-- 中文期刊论文配套Coze写作智能体 -->
-<div style="width:100%; height:630px; border:1px solid #eee; border-radius:8px; margin:15px 0 30px 0; overflow:hidden;">
-  <iframe 
-    src="https://code.coze.cn/web-sdk/7655125766451019802"
-    width="100%"
-    height="100%"
-    frameborder="0"
-    allow="clipboard-read; clipboard-write"
-  ></iframe>
-</div>
+           <!-- 医学论文撰写板块 -->
+<ul>
+  <!-- 其他服务项... -->
+  <li>
+    <!-- 父菜单：中文期刊论文（可点击） -->
+    <button 
+      onclick="togglePaperAgent()" 
+      style="background:none; border:none; cursor:pointer; font-size:inherit; padding:0;"
+    >
+      中文期刊论文
+    </button>
+    <!-- 子菜单：论文写作智能体（默认隐藏，点击后显示） -->
+    <div id="paperAgentPopup" style="display:none; position:fixed; right:20px; bottom:20px; width:450px; height:650px; border:1px solid #eee; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); background:#fff; z-index:9999;">
+      <!-- 窗口标题栏 -->
+      <div style="padding:12px 16px; background:#f5f5f5; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:600;">论文写作智能体</span>
+        <button onclick="togglePaperAgent()" style="background:none; border:none; font-size:18px; cursor:pointer;">&times;</button>
+      </div>
+      <!-- Coze 智能体 iframe -->
+      <iframe 
+        src="https://code.coze.cn/web-sdk/7655125766451019802"
+        width="100%"
+        height="calc(100% - 48px)"
+        frameborder="0"
+        allow="clipboard-read; clipboard-write"
+        style="border-radius:0 0 12px 12px;"
+      ></iframe>
+    </div>
+  </li>
+  <!-- 其他服务项... -->
+</ul>
             <li>回顾性/前瞻性临床研究</li>
             <li>病例报告与病例系列</li>
             <li>基础研究转化论文</li>
