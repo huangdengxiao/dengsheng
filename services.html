@@ -73,22 +73,18 @@
         </article>
 
         <article id="paper" class="service-block fade-in">
-          <h2>📝 医学论文撰写</h2>
-          <p style="color:var(--text-muted);margin-bottom:16px;">从选题立项到投稿修回，提供中英文医学论文全流程写作支持，覆盖各类研究设计与期刊层级。</p>
-          <p style="margin-bottom:16px;">
-            <a href="paper-cn.html" class="btn btn-primary" style="font-size:0.9rem;padding:10px 20px;">进入中文期刊论文写作向导 →</a>
-          </p>
-          <ul class="feature-list">
-            <li>SCI 论文（Q1-Q4 分区）</li>
-           <!-- 医学论文撰写板块 -->
-<ul>
+         <h2>📝 医学论文撰写</h2>
+<p style="color:var(--text-muted);margin-bottom:16px;">从选题立项到投稿修回，提供中英文医学论文全流程写作支持，覆盖各类研究设计与期刊层级。</p>
+<p style="margin-bottom:16px;">
+  <a href="paper-cn.html" class="btn btn-primary" style="font-size:0.9rem;padding:10px 20px;">进入中文期刊论文写作向导</a>
+</p>
+<ul class="feature-list">
+  <li>SCI 论文（Q1-Q4 分区）</li>
+  <!-- 医学论文撰写模块 -->
   <!-- 其他服务项... -->
   <li>
     <!-- 父菜单：中文期刊论文（可点击） -->
-    <button 
-      onclick="togglePaperAgent()" 
-      style="background:none; border:none; cursor:pointer; font-size:inherit; padding:0;"
-    >
+    <button onclick="togglePaperAgent()" style="background:none; border:none; cursor:pointer; font-size:inherit; padding:0;">
       中文期刊论文
     </button>
     <!-- 子菜单：论文写作智能体（默认隐藏，点击后显示） -->
@@ -111,6 +107,14 @@
   </li>
   <!-- 其他服务项... -->
 </ul>
+
+<!-- 在 </body> 之前添加这段 JS -->
+<script>
+function togglePaperAgent() {
+  const popup = document.getElementById('paperAgentPopup');
+  popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+}
+</script>
             <li>回顾性/前瞻性临床研究</li>
             <li>病例报告与病例系列</li>
             <li>基础研究转化论文</li>
